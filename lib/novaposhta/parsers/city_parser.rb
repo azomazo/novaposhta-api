@@ -39,7 +39,7 @@ module Novaposhta
       def end_element(name)
         if name == "city"
           @city_element = false
-          @cities << @current_city
+          @cities << Novaposhta::City.new(@current_city) if !@current_city.empty?
         end
       end
     end

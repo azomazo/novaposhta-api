@@ -16,14 +16,14 @@ module Novaposhta
       xml = create_request_xml do |xml|
         xml.city
       end
-      request_and_parse(xml, Novaposhta::Parser::CityParser.new).cities
+      request_and_parse(xml, Novaposhta::Parser::CityParser.new).cities.sort {|x,y| x.ru.downcase <=> y.ru.downcase}
     end
 
     def city_warehouses
       xml = create_request_xml do |xml|
         xml.citywarehouses
       end
-      request_and_parse(xml, Novaposhta::Parser::CityParser.new).cities
+      request_and_parse(xml, Novaposhta::Parser::CityParser.new).cities.sort {|x,y| x.ru.downcase <=> y.ru.downcase}
     end
 
     def warehouses(city_name = nil)

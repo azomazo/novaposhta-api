@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:azomazo/pdfkit.git
+  revision: 1859fce9b719e5a72c149894ccf8026a3b4d7b96
+  specs:
+    pdfkit (0.5.3)
+
 PATH
   remote: .
   specs:
@@ -23,4 +29,5 @@ PLATFORMS
 
 DEPENDENCIES
   novaposhta!
+  pdfkit!
   rspec (~> 2.11.0)

@@ -20,8 +20,12 @@ module Novaposhta
       return [] if orders.empty?
       xml = create_request_xml do |xml|
         orders.each do |o|
-          order = o.is_a?(:hash) ? Novaposhta::Order.new(o) : o
-          xml.order(order.hash)
+          order = o.is_a?(Hash) ? Novaposhta::Order.new(o) : o
+          xml.order(order.hash.select{|k,v| !v.is_a?(Hash)}) do |xml_order|
+            order.hash.select{|k, v| v.is_a?(Hash)}.each do |k, v|
+              xml_order.send(k, v)
+            end
+          end
         end
       end
 
@@ -90,7 +94,7 @@ module Novaposhta
 
     private
     def create_request_xml(&xml)
-      builder = Nokogiri::XML::Builder.new do |xml|
+      builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
         xml.file {
           xml.auth api_key
           yield xml

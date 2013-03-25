@@ -16,7 +16,7 @@ module Novaposhta
     def convert
       date = DEFAULT_DATE if date.nil?
       date = date.strftime('%Y-%m-%d') if !date.is_a?(String)
-      date_desired  = date_desired.strftime('%Y-%m-%d') if !date.nil? and !date.is_a?(String)
+      date_desired  = date_desired.strftime('%Y-%m-%d') if !date_desired.nil? and !date_desired.is_a?(String)
     end
 
     def method_missing(method_name, *args)
@@ -28,7 +28,7 @@ module Novaposhta
         end
         modifiable[new_ostruct_member(mname)] = args[0]
       elsif len == 0 && method_name != :[]
-        @table[method_name]
+        @hash[method_name]
       else
         ""
       end

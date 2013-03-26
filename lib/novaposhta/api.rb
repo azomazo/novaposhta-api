@@ -65,6 +65,12 @@ module Novaposhta
       request_and_parse(xml, Novaposhta::Parser::WarehouseParser.new).warehouses
     end
 
+    def warehouse(warehouse_id, city_name = nil)
+      selected = warehouses(city_name).select{ |w| w.id == warehouse_id.to_i }
+      raise "Warehouse with #{warehouse_id} not found in city #{city_name}" if selected.empty?
+      return selected[0]
+    end
+
     def printed_form_ttn(ttn_id, options = {})
       options = {:copy_count => 1,
                  :o => ttn_id,

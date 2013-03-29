@@ -14,7 +14,7 @@ module Novaposhta
       def start_element(name, attrs = [])
         return if name.downcase != "close" && !@close_element
         case name.downcase
-          when "city"
+          when "close"
             pattrs = parse_attr(attrs)
             @current_close = pattrs[:id]
             @close_element = true
@@ -28,7 +28,7 @@ module Novaposhta
       end
 
       def end_element(name)
-        if name.downcase == "city"
+        if name.downcase == "close"
           @close_element = false
         end
       end

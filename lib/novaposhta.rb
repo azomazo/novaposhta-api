@@ -5,6 +5,7 @@ require "novaposhta/order"
 require "novaposhta/warehouse"
 
 require "novaposhta/parsers/city_parser"
+require "novaposhta/parsers/close_parser"
 require "novaposhta/parsers/order_parser"
 require "novaposhta/parsers/warehouse_parser"
 

@@ -33,10 +33,11 @@ module Novaposhta
     end
 
     def close(ttn_ids=[])
+      ttn_ids = [ttn_ids] if !ttn_ids.is_a?(Array)
       return {} if ttn_ids.empty?
       xml = create_request_xml do |xml|
         ttn_ids.each do |ttn_id|
-          xml.close = ttn_id
+          xml.close ttn_id
         end
       end
 

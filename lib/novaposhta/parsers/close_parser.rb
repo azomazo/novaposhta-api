@@ -38,7 +38,7 @@ module Novaposhta
         pattrs = {}
         attrs.each do |attr|
           if attr[0].downcase == "id"
-            patts[:id] = attr[1]
+            pattrs[:id] = attr[1]
           end
         end
         pattrs
